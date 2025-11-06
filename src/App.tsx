@@ -1,19 +1,22 @@
-import { useState } from "react";
-import { LoginForm } from "./components/forms/login";
-import { SignupForm } from "./components/forms/register";
-
+import { LoginForm } from "./pages/login";
+import { SignupForm } from "./pages/register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Dashboard } from "./pages/dashboard";
+import { UserProvider } from "./providers/user";
+import { Toaster } from "sonner";
 function App() {
-  const [login, setLogin] = useState(true);
   return (
-    <div className="h-svh w-screen grid place-items-center">
-      <h1 className="text-3xl border font-extrabold text-center">
-        Firebase auth app
-      </h1>
-      {login ? (
-        <LoginForm setLogin={setLogin}></LoginForm>
-      ) : (
-        <SignupForm setLogin={setLogin} className="md:w-1/2 w-11/12" />
-      )}
+    <div className="h-svh w-screen bg-linear-to-br overflow-y-auto from-slate-50 via-blue-50 to-indigo-100 p-8">
+      <BrowserRouter>
+        <UserProvider>
+          <Toaster position="top-right" />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
+          </Routes>
+        </UserProvider>
+      </BrowserRouter>
     </div>
   );
 }
