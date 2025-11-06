@@ -59,7 +59,7 @@ export function LoginForm() {
 
   return (
     <motion.div
-      className="flex flex-col gap-6 shrink-0 mx-auto w-11/12 max-w-2xl"
+      className="flex flex-col gap-6 shrink-0 mx-auto w-[95%] max-w-2xl"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

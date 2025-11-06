@@ -9,9 +9,9 @@ export function Dashboard() {
   if (!user) return null;
 
   return (
-    <div>
+    <div className="w-full">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="max-w-7xl px-2 sm:px-6 lg:px-8 py-8 space-y-8">
         <UserCard />
         {/* Admin View */}
         <UserList />

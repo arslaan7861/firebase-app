@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useUser } from "@/providers/user";
-import { Shield, User } from "lucide-react";
+import { Calendar, Shield, User } from "lucide-react";
 function UserCard() {
   const { user } = useUser();
 
@@ -23,20 +23,20 @@ function UserCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+      className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100"
     >
-      <div className="flex items-start justify-between mb-6">
-        <div className="flex items-center">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 ">
+        <div className="flex items-center flex-col md:flex-row ">
           <div className="relative">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl shadow-lg">
               {user.name.charAt(0).toUpperCase()}
             </div>
           </div>
-          <div className="ml-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-1">
+          <div className="sm:ml-6 text-center md:text-left">
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-1">
               {user.name}
             </h2>
-            <p className="text-gray-600 flex items-center">
+            <p className="text-gray-600 flex text-sm md:text-base items-center">
               <span className="mr-2">✉️</span>
               {user.email}
             </p>
@@ -71,7 +71,7 @@ function UserCard() {
             value: user.createdAt
               ? new Date(user.createdAt).toLocaleDateString()
               : "—",
-            icon: null,
+            icon: <Calendar className="w-5 h-5 text-green-700" />,
             color: "from-green-50 to-emerald-50 border-green-100",
           },
         ].map((item, index) => (

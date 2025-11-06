@@ -60,7 +60,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
   return (
     <motion.div
-      className="w-11/12 max-w-3xl mx-auto"
+      className="w-[95%] max-w-3xl mx-auto"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
