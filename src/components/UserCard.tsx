@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useUser } from "@/providers/user";
 import { Calendar, Shield, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 function UserCard() {
   const { user } = useUser();
 
@@ -42,13 +44,21 @@ function UserCard() {
             </p>
           </div>
         </div>
-        <span
-          className={`px-4 py-2 rounded-full text-sm font-bold border-2 shadow-sm ${getRoleBadgeColor(
-            user.role
-          )}`}
-        >
-          {user.role.toUpperCase()}
-        </span>
+        <div className="flex gap-2">
+          <span
+            className={`px-4 py-2 rounded-full text-sm font-bold border-2 shadow-sm ${getRoleBadgeColor(
+              user.role
+            )}`}
+          >
+            {user.role.toUpperCase()}
+          </span>
+          <Button
+            asChild
+            className="rounded-full bg-primary/40 text-primary border-2 border-primary/80"
+          >
+            <Link to={"/chat"}>Chats</Link>
+          </Button>
+        </div>
       </div>
 
       {/* 3 Info Boxes */}

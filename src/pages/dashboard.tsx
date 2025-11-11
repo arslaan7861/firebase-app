@@ -9,7 +9,7 @@ export function Dashboard() {
   if (!user) return null;
 
   return (
-    <div className="w-full">
+    <div className="w-full p-4 md:p-8">
       <Header />
       <div className="max-w-7xl px-2 sm:px-6 lg:px-8 py-8 space-y-8">
         <UserCard />

@@ -53,7 +53,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         const userData: userType = userSnap.data() as userType;
 
         dispatch({ type: "SETUSER", payload: userData });
-        router("/");
       } catch (error) {
         console.log(error);
         router("/login");

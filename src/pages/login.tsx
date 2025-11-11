@@ -59,12 +59,14 @@ export function LoginForm() {
 
   return (
     <motion.div
-      className="flex flex-col gap-6 shrink-0 mx-auto w-[95%] max-w-2xl"
+      className="flex flex-col justify-center h-full gap-6 shrink-0 mx-auto w-[95%] max-w-2xl"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <h2 className="text-4xl font-bold text-center">Firebase auth tutorial</h2>
+      <h2 className="text-2xl md:text-4xl font-bold text-center">
+        Firebase auth tutorial
+      </h2>
       <Card className="shadow-lg">
         <CardHeader>
           <motion.div

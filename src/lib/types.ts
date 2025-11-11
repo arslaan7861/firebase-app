@@ -5,3 +5,11 @@ export interface userType {
   role: "admin" | "employee" | "user";
   uid: string;
 }
+
+export interface ChatMessage {
+  createdAt: Date;
+  message: string;
+  role: "admin" | "user" | "super admin";
+  sender: string;
+  uid: string;
+}

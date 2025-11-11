@@ -60,12 +60,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
   return (
     <motion.div
-      className="w-[95%] max-w-3xl mx-auto"
+      className="w-[95%] max-w-3xl mx-auto justify-center h-full flex flex-col"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <h2 className="text-4xl font-bold text-center mb-4">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-4">
         Firebase auth tutorial
       </h2>
       <Card {...props} className="shadow-lg">
