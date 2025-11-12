@@ -2,7 +2,7 @@ import type { userType } from "@/lib/types";
 
 // Define action types
 export const SETUSER = "SETUSER";
-export const SETLOADING = "SETLOADING";
+export const SETUSERLOADING = "SETUSERLOADING";
 
 // Define action interfaces
 export interface setUserActionType {
@@ -10,16 +10,16 @@ export interface setUserActionType {
   payload: userType | null;
 }
 
-export interface setLoadingActionType {
-  type: typeof SETLOADING;
+export interface setUserLoadingActionType {
+  type: typeof SETUSERLOADING;
   payload: boolean;
 }
 
 // Combine them
-export type UserAction = setLoadingActionType | setUserActionType;
+export type UserAction = setUserLoadingActionType | setUserActionType;
 
 // Define state type
 export interface UserState {
   user: userType | null;
-  loading: boolean;
+  userLoading: boolean;
 }

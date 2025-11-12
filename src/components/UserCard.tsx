@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useUser } from "@/providers/user";
-import { Calendar, Shield, User } from "lucide-react";
+import { Calendar, Mail, Shield, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import LogoutButton from "./buttons/LogoutButton";
+import { Badge } from "./ui/badge";
 function UserCard() {
   const { user } = useUser();
 
@@ -35,30 +37,19 @@ function UserCard() {
             </div>
           </div>
           <div className="sm:ml-6 text-center md:text-left">
-            <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-1">
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-1 capitalize">
               {user.name}
             </h2>
-            <p className="text-gray-600 flex text-sm md:text-base items-center">
-              <span className="mr-2">✉️</span>
+            <p className="text-gray-600 flex gap-1 text-sm md:text-base items-center">
+              <Mail className="h-4 w-4" />
               {user.email}
             </p>
           </div>
         </div>
-        <div className="flex gap-2">
-          <span
-            className={`px-4 py-2 rounded-full text-sm font-bold border-2 shadow-sm ${getRoleBadgeColor(
-              user.role
-            )}`}
-          >
-            {user.role.toUpperCase()}
-          </span>
-          <Button
-            asChild
-            className="rounded-full bg-primary/40 text-primary border-2 border-primary/80"
-          >
-            <Link to={"/chat"}>Chats</Link>
-          </Button>
-        </div>
+
+        <Badge variant={"secondary"} className="mt-4 md:mt-0 text-sm md:lg">
+          {user.role.toUpperCase()}
+        </Badge>
       </div>
 
       {/* 3 Info Boxes */}
@@ -93,12 +84,14 @@ function UserCard() {
             className={`bg-gradient-to-br ${item.color} rounded-xl p-6 border shadow-sm hover:shadow-md transition-all duration-300`}
           >
             <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-medium text-gray-700">{item.label}</p>
+              <p className="md:text-sm text-xs font-medium text-gray-700">
+                {item.label}
+              </p>
               <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
                 {item.icon}
               </div>
             </div>
-            <p className="text-2xl font-bold text-gray-900 truncate">
+            <p className="md:text-2xl uppercase text-lg font-bold text-gray-900 truncate">
               {item.value}
             </p>
           </motion.div>

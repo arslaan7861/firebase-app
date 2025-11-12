@@ -17,10 +17,10 @@ function App() {
             <MessageProvider>
               <Toaster position="top-right" />
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/details" element={<Dashboard />} />
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/signup" element={<SignupForm />} />
-                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/" element={<ChatPage />} />
               </Routes>
             </MessageProvider>
           </UserProvider>

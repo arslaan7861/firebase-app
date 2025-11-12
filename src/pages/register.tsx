@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   Card,
   CardContent,
@@ -36,7 +36,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     resolver: zodResolver(signupSchema),
   });
   const router = useNavigate();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user) router("/");
   }, [user]);
 

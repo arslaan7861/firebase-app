@@ -5,31 +5,28 @@ import {
   onSnapshot,
   orderBy,
   query,
-  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { toast } from "sonner";
 import type { ChatMessage } from "@/lib/types";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/store";
 
-//* Type Definitions
 interface MessageContextType {
   messages: ChatMessage[];
   loading: boolean;
   sendMessage: (text: string, sender: string, role: string) => Promise<void>;
 }
-
-//* Create Context
 const MessageContext = createContext<MessageContextType | undefined>(undefined);
-
-//* Provider Component
 export const MessageProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [loading, setLoading] = useState(true);
-
+  const { messages, messageLoading } = useSelector(
+    (state: RootState) => state.message
+  );
+  const dispatch = useDispatch<AppDispatch>();
   //* Listen to Firestore messages (real-time)
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("createdAt", "asc"));
@@ -40,16 +37,15 @@ export const MessageProvider = ({
         const msgs = snapshot.docs.map(
           (doc) => ({ uid: doc.id, ...doc.data() } as ChatMessage)
         );
-        setMessages(msgs);
-        setLoading(false);
+        dispatch({ type: "SETMESSAGES", payload: msgs });
+        dispatch({ type: "SETMESSAGELOADING", payload: false });
       },
       (error) => {
         console.error("Error fetching messages:", error);
         toast.error("Failed to load messages.");
-        setLoading(false);
+        dispatch({ type: "SETMESSAGELOADING", payload: false });
       }
     );
-
     return () => unsubscribe();
   }, []);
 
@@ -65,7 +61,7 @@ export const MessageProvider = ({
         message: text,
         sender,
         role,
-        createdAt: serverTimestamp(),
+        createdAt: new Date().toISOString(),
       });
     } catch (error) {
       console.error("Error sending message:", error);
@@ -75,7 +71,9 @@ export const MessageProvider = ({
 
   //* Provide context to children
   return (
-    <MessageContext.Provider value={{ messages, loading, sendMessage }}>
+    <MessageContext.Provider
+      value={{ messages, loading: messageLoading, sendMessage }}
+    >
       {children}
     </MessageContext.Provider>
   );

@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { loginSchema, type LoginFormData } from "@/schemas/user";
 import { useUser } from "@/providers/user";
 import LoginWithGoogle from "../components/buttons/LoginWithGoogle";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export function LoginForm() {
   const { signIn, user } = useUser();
@@ -34,7 +34,7 @@ export function LoginForm() {
   });
   const router = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user) router("/");
   }, [user]);
 

@@ -1,8 +1,13 @@
-import { type UserAction, type UserState, SETLOADING, SETUSER } from "./type";
+import {
+  type UserAction,
+  type UserState,
+  SETUSERLOADING,
+  SETUSER,
+} from "./type";
 
 const initialState: UserState = {
   user: null,
-  loading: false,
+  userLoading: false,
 };
 
 // Reducer function
@@ -13,8 +18,8 @@ export const userReducer = (
   switch (action.type) {
     case SETUSER:
       return { ...state, user: action.payload };
-    case SETLOADING:
-      return { ...state, loading: action.payload };
+    case SETUSERLOADING:
+      return { ...state, userLoading: action.payload };
     default:
       return state;
   }

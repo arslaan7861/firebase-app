@@ -32,7 +32,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 //* Provider Component
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const { user, loading } = useSelector((state: RootState) => state);
+  const { user, userLoading } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const router = useNavigate();
   //* Track Auth State (Firebase Listener)
@@ -57,7 +57,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(error);
         router("/login");
       } finally {
-        dispatch({ type: "SETLOADING", payload: false });
+        dispatch({ type: "SETUSERLOADING", payload: false });
       }
     });
 
@@ -219,7 +219,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   //* Provide context to children
   return (
     <UserContext.Provider
-      value={{ user, loading, signUp, signIn, signInWithGoogle, logout }}
+      value={{
+        user,
+        loading: userLoading,
+        signUp,
+        signIn,
+        signInWithGoogle,
+        logout,
+      }}
     >
       {children}
     </UserContext.Provider>

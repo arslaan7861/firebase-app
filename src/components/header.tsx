@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
+import { ArrowLeft, Shield } from "lucide-react";
 import LogoutButton from "./buttons/LogoutButton";
+import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const router = useNavigate();
   return (
     <motion.div
       initial={{ y: -20, opacity: 0 }}
@@ -10,13 +13,20 @@ function Header() {
       transition={{ duration: 0.4 }}
       className="bg-white/80 sticky top-0 z-10 backdrop-blur-sm shadow-lg border-b border-gray-200"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
+      <div className=" px-4 sm:px-6 lg:px-8 py-4">
+        <div
+          className="flex items-center"
+          onClick={() => router("/", { replace: true })}
+        >
+          <Button variant="ghost" size="icon" className="">
+            <ArrowLeft className="h-8 w-8" />
+          </Button>
           <div className="flex items-center">
-            <Shield className="w-8 h-8 text-indigo-600 mr-3" />
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <h1 className="text-lg md:text-2xl font-bold text-gray-900 ">
+              Enrope Solutions
+            </h1>
           </div>
-          <LogoutButton />{" "}
+          <LogoutButton className="ml-auto" />
         </div>
       </div>
     </motion.div>
